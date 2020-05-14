@@ -19,17 +19,56 @@ function capFirst (str) {
 
 function playRound (playerSelection, computerSelection) {
   playerSelection = capFirst(playerSelection.toLowerCase());// sanitize user input
-  console.log(playerSelection);
-  winCase = (
+  let winCase = (
     (playerSelection == 'Rock' && computerSelection == 'Scissors') ||
     (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
     (playerSelection == 'Paper' && computerSelection == 'Rock')
     );
-  tieCase = (playerSelection == computerSelection);
+  let tieCase = (playerSelection == computerSelection);
   return (
-    tieCase ? 'You tied.' :
-    winCase ? `You win. ${playerSelection} beats ${computerSelection}.` :
-    `You lose! ${computerSelection} beats ${playerSelection}.`
+    tieCase ? 'You tied this round.' :
+    winCase ? `You win this round. ${playerSelection} beats ${computerSelection}.` :
+    `You lose this round! ${computerSelection} beats ${playerSelection}.`
+    );
+}
+
+function userWins(message) {
+  return (
+    (message.slice(4, 7) == 'tie') ? 'tie' :
+    (message.slice(4, 7) == 'win') ? true :
+    false
     )
+}
+
+function logScore (computer, you) {
+  console.log(`Computer: ${computer}; You: ${you}`)
+}
+
+function game () {
+  let userScore = 0;
+  let computerScore = 0;
+  let userPlay;
+  for (let i = 0; i < 5; i++) {
+    userPlay = prompt('Enter your play (rock, paper, scissors): ');
+    let roundResult = playRound(userPlay, computerPlay());
+    console.log(roundResult);
+    switch(userWins(roundResult)) {
+      case true:
+        userScore++;
+        logScore(computerScore, userScore);
+        break;
+      case false:
+        computerScore++;
+        logScore(computerScore, userScore);
+        break;
+      default:
+        logScore(computerScore, userScore);
+    }
+  }
+  console.log(
+    (userScore > computerScore) ? 'You win.' :
+    (userScore < computerScore) ? 'You lose!':
+    'It was a tie.'
+    );
 }
 
