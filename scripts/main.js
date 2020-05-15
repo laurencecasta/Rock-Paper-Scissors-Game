@@ -37,11 +37,11 @@ function userWins(message) {
     (message.slice(4, 7) == 'tie') ? 'tie' :
     (message.slice(4, 7) == 'win') ? true :
     false
-    )
+    );
 }
 
 function logScore (computer, you) {
-  console.log(`Computer: ${computer}; You: ${you}`)
+  alert(`Computer: ${computer}; You: ${you}`);
 }
 
 function game () {
@@ -51,7 +51,7 @@ function game () {
   for (let i = 0; i < 5; i++) {
     userPlay = prompt('Enter your play (rock, paper, scissors): ');
     let roundResult = playRound(userPlay, computerPlay());
-    console.log(roundResult);
+    alert(roundResult);
     switch(userWins(roundResult)) {
       case true:
         userScore++;
@@ -65,7 +65,7 @@ function game () {
         logScore(computerScore, userScore);
     }
   }
-  console.log(
+  alert(
     (userScore > computerScore) ? 'You win.' :
     (userScore < computerScore) ? 'You lose!':
     'It was a tie.'
