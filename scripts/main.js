@@ -44,31 +44,24 @@ function logScore (computer, you) {
   alert(`Computer: ${computer}; You: ${you}`);
 }
 
-function game () {
-  let userScore = 0;
-  let computerScore = 0;
-  let userPlay;
-  for (let i = 0; i < 5; i++) {
-    userPlay = prompt('Enter your play (rock, paper, scissors): ');
-    let roundResult = playRound(userPlay, computerPlay());
-    alert(roundResult);
-    switch(userWins(roundResult)) {
-      case true:
-        userScore++;
-        logScore(computerScore, userScore);
-        break;
-      case false:
-        computerScore++;
-        logScore(computerScore, userScore);
-        break;
-      default:
-        logScore(computerScore, userScore);
-    }
-  }
-  alert(
-    (userScore > computerScore) ? 'You win.' :
-    (userScore < computerScore) ? 'You lose!':
-    'It was a tie.'
-    );
-}
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
 
+const gameData = document.querySelector('#gameData');
+
+const roundResult = document.createElement('h3');
+
+rockBtn.addEventListener('click', () => {
+  roundResult.textContent = playRound('Rock', computerPlay());
+})
+
+paperBtn.addEventListener('click', () => {
+  roundResult.textContent = playRound('Paper', computerPlay());
+})
+
+scissorsBtn.addEventListener('click', () => {
+  roundResult.textContent = playRound('Paper', computerPlay());
+})
+
+gameData.appendChild(roundResult);
