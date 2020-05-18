@@ -41,7 +41,7 @@ function userWins(message) {
 }
 
 function logScore (computer, you) {
-  alert(`Computer: ${computer}; You: ${you}`);
+  return `Computer: ${computer} | You: ${you}`;
 }
 
 const rockBtn = document.querySelector('#rock');
@@ -51,17 +51,117 @@ const scissorsBtn = document.querySelector('#scissors');
 const gameData = document.querySelector('#gameData');
 
 const roundResult = document.createElement('h3');
+const tally = document.createElement('h3');
 
+let userScore = 0;
+let compScore = 0;
 rockBtn.addEventListener('click', () => {
-  roundResult.textContent = playRound('Rock', computerPlay());
+  if (roundResult.textContent == 'You win.' || roundResult.textContent == 'You lose!') {
+    return;
+  }
+  if (userScore == 5 || compScore == 5) {
+    if (userScore > compScore) {
+      roundResult.textContent = 'You win.';
+    } else {
+      roundResult.textContent = 'You lose!';
+    }
+    return;
+  }
+
+  roundText = playRound('Rock', computerPlay());
+  roundResult.textContent = roundText;
+  if (userWins(roundText) === true) {
+    userScore++;
+  } else if (userWins(roundText) === false) {
+    compScore++;
+  }
+
+  tally.textContent = logScore(compScore, userScore);
+
+  if (roundResult.textContent == 'You win.' || roundResult.textContent == 'You lose!') {
+    return;
+  }
+  if (userScore == 5 || compScore == 5) {
+    if (userScore > compScore) {
+      roundResult.textContent = 'You win.';
+    } else {
+      roundResult.textContent = 'You lose!';
+    }
+    return;
+  }
 })
 
 paperBtn.addEventListener('click', () => {
-  roundResult.textContent = playRound('Paper', computerPlay());
+  if (roundResult.textContent == 'You win.' || roundResult.textContent == 'You lose!') {
+    return;
+  }
+  if (userScore == 5 || compScore == 5) {
+    if (userScore > compScore) {
+      roundResult.textContent = 'You win.';
+    } else {
+      roundResult.textContent = 'You lose!';
+    }
+    return;
+  }
+  
+  roundText = playRound('Rock', computerPlay());
+  roundResult.textContent = roundText;
+  if (userWins(roundText) === true) {
+    userScore++;
+  } else if (userWins(roundText) === false) {
+    compScore++;
+  }
+  tally.textContent = logScore(compScore, userScore);
+
+  if (roundResult.textContent == 'You win.' || roundResult.textContent == 'You lose!') {
+    return;
+  }
+  if (userScore == 5 || compScore == 5) {
+    if (userScore > compScore) {
+      roundResult.textContent = 'You win.';
+    } else {
+      roundResult.textContent = 'You lose!';
+    }
+    return;
+  }
+  
 })
 
 scissorsBtn.addEventListener('click', () => {
-  roundResult.textContent = playRound('Paper', computerPlay());
+  if (roundResult.textContent == 'You win.' || roundResult.textContent == 'You lose!') {
+    return;
+  }
+  if (userScore == 5 || compScore == 5) {
+    if (userScore > compScore) {
+      roundResult.textContent = 'You win.';
+    } else {
+      roundResult.textContent = 'You lose!';
+    }
+    return;
+  }
+  
+  roundText = playRound('Rock', computerPlay());
+  roundResult.textContent = roundText;
+  if (userWins(roundText) === true) {
+    userScore++;
+  } else if (userWins(roundText) === false) {
+    compScore++;
+  }
+  tally.textContent = logScore(compScore, userScore);
+
+  if (roundResult.textContent == 'You win.' || roundResult.textContent == 'You lose!') {
+    return;
+  }
+  if (userScore == 5 || compScore == 5) {
+    if (userScore > compScore) {
+      roundResult.textContent = 'You win.';
+    } else {
+      roundResult.textContent = 'You lose!';
+    }
+    return;
+  }
+  
 })
 
 gameData.appendChild(roundResult);
+gameData.appendChild(tally);
